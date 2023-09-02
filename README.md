@@ -6,7 +6,7 @@ Bash script to install minimal version of gnome on debian
 Execute install.sh as **normal user** from a terminal:
 
 ```bash
- git clone https://github.com/shreyasastech/debian-gnome.git
+ git clone https://github.com/shreyas-a-s/debian-gnome.git
  cd debian-gnome/
  chmod +x install.sh
  .install.sh
@@ -14,5 +14,5 @@ Execute install.sh as **normal user** from a terminal:
 
 For those who would like a single-line command:
 ```bash
- git clone https://github.com/shreyasastech/debian-gnome.git && cd debian-gnome/ && chmod +x install.sh && ./install.sh
+ git clone https://github.com/shreyas-a-s/debian-gnome.git && cd debian-gnome/ && chmod +x install.sh && ./install.sh
 ```
