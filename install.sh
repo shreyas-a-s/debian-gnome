@@ -40,6 +40,5 @@ sudo apt purge firefox-esr yelp gnome-terminal totem -y && sudo apt install gnom
 # Installing customisations
 if [ "$customisation_choice" = 'yes' ]; then
   echo "Starting the installation.."
-  cd ../
-  git clone -b de https://github.com/shreyas-a-s/debian-customisation.git && cd debian-customisation/ && ./install.sh
+  cd ..; git clone -b de https://github.com/shreyas-a-s/debian-customisation.git && cd debian-customisation/ && ./install.sh
 fi
