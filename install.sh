@@ -28,7 +28,7 @@ function shellChoice {
 }
 
 # Installation
-customisationChoice && export customisation_choice
+customisationChoice
 if [ "$customisation_choice" = 'yes' ]; then
   qemuChoice
   shellChoice && export shell_choice
@@ -39,6 +39,7 @@ sudo apt purge firefox-esr yelp gnome-terminal totem -y && sudo apt install gnom
 # Installing customisations
 if [ "$customisation_choice" = 'yes' ]; then
   echo "Starting the installation.."
+  export customisation_choice
   cd ..
   git clone -b de https://github.com/shreyas-a-s/debian-customisation.git && cd debian-customisation/ && ./install.sh
 fi
