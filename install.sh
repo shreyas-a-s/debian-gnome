@@ -21,7 +21,7 @@ function qemuChoice {
 # Shell Choice
 function shellChoice {
 	read -r -p "Which shell you prefer? (bash/fish) : " shell_choice
-  if [ "$shell_choice" != 'bash' ] && [ "$qemu_choice" != 'fish' ]; then
+  if [ "$shell_choice" != 'bash' ] && [ "$shell_choice" != 'fish' ]; then
     echo -e "Invalid Choice! Keep in mind this is CASE-SENSITIVE.\n"
     shellChoice
   fi
