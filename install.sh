@@ -30,7 +30,7 @@ function shellChoice {
 # Installation
 customisationChoice
 if [ "$customisation_choice" = 'yes' ]; then
-  qemuChoice
+  qemuChoice && export qemu_choice
   shellChoice && export shell_choice
 fi
 sudo apt install gnome-core -y
