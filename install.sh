@@ -34,8 +34,8 @@ if [ "$customisation_choice" = 'yes' ]; then
   qemuChoice && export qemu_choice
   shellChoice && export shell_choice
 fi
-sudo apt-get -qq install gnome-core
-sudo apt-get -qq purge firefox-esr yelp gnome-terminal totem && sudo apt-get -qq install gnome-console gnome-tweaks && sudo apt-get -qq autoremove
+sudo apt-get -y install gnome-core
+sudo apt-get -y purge firefox-esr yelp gnome-terminal totem && sudo apt-get -y install gnome-console gnome-tweaks && sudo apt-get -y autoremove
 
 # Set custom keyboard shortcuts
 source ./gshort.sh
