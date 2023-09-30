@@ -34,8 +34,8 @@ if [ "$customisation_choice" = 'yes' ]; then
   qemuChoice && export qemu_choice
   shellChoice && export shell_choice
 fi
-sudo apt install gnome-core -y
-sudo apt purge firefox-esr yelp gnome-terminal totem -y && sudo apt install gnome-console gnome-tweaks -y && sudo apt autoremove -y
+sudo apt-get -qq install gnome-core -y
+sudo apt-get -qq purge firefox-esr yelp gnome-terminal totem -y && sudo apt-get -qq install gnome-console gnome-tweaks -y && sudo apt-get -qq autoremove -y
 
 # Installing customisations
 if [ "$customisation_choice" = 'yes' ]; then
