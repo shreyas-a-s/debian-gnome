@@ -34,10 +34,10 @@ if [ "$customisation_choice" = 'yes' ]; then
   qemuChoice && export qemu_choice
   shellChoice && export shell_choice
 fi
-sudo apt-get -qq install gnome-core -y
-sudo apt-get -qq purge firefox-esr yelp gnome-terminal totem -y && sudo apt-get -qq install gnome-console gnome-tweaks -y && sudo apt-get -qq autoremove -y
+sudo apt-get -qq install gnome-core
+sudo apt-get -qq purge firefox-esr yelp gnome-terminal totem && sudo apt-get -qq install gnome-console gnome-tweaks && sudo apt-get -qq autoremove
 
-# Installing customisations
+# Installing customisationsRemove redundent -y
 if [ "$customisation_choice" = 'yes' ]; then
   echo "Starting the installation.."
   cd ..; git clone -b de https://github.com/shreyas-a-s/debian-customisation.git && cd debian-customisation/ && ./install.sh
