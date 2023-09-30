@@ -1,6 +1,9 @@
 # Debian-Gnome
 Bash script to install minimal version of gnome on debian
 
+## Acknowledgements
+- Thanks, [tukusejssirs](https://gitlab.com/tukusejssirs) for gshort.sh script.
+
 ## Prerequisites
 Debian minimal install using [netinstall iso](https://debian.org/download) with no DE installed is prefered even though the script will work even if DE is installed.
 
