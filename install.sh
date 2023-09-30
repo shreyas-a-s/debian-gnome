@@ -37,7 +37,11 @@ fi
 sudo apt-get -qq install gnome-core
 sudo apt-get -qq purge firefox-esr yelp gnome-terminal totem && sudo apt-get -qq install gnome-console gnome-tweaks && sudo apt-get -qq autoremove
 
-# Installing customisationsRemove redundent -y
+# Set custom keyboard shortcuts
+source ./gshort.sh
+gshort Terminal kgx '<Primary><Alt>t' # Set gnome-console to launch with Ctrl+Alt+T
+
+# Installing customisations
 if [ "$customisation_choice" = 'yes' ]; then
   echo "Starting the installation.."
   cd ..; git clone -b de https://github.com/shreyas-a-s/debian-customisation.git && cd debian-customisation/ && ./install.sh
