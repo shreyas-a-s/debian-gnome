@@ -40,9 +40,13 @@ sudo apt-get -y purge firefox-esr yelp gnome-terminal totem && sudo apt-get -y i
 # Symlink gedit to gnome-text-editor
 sudo ln -s /usr/bin/gnome-text-editor /usr/bin/gedit
 
-# Set custom keyboard shortcuts
-source ./gshort.sh
-gshort Terminal kgx '<Primary><Alt>t' # Set gnome-console to launch with Ctrl+Alt+T
+# Set gnome-console to launch with Ctrl+Alt+T
+# Source 1: https://askubuntu.com/questions/597395/
+# Source 2: https://gitlab.com/tukusejssirs/lnx_scripts/-/blob/master/bash/functions/gshort.sh
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Terminal'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'kgx'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Primary><Alt>t'
 
 # Installing customisations
 if [ "$customisation_choice" = 'yes' ]; then
