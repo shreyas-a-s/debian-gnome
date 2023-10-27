@@ -62,7 +62,7 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Super>Return'
 
 # Set default keybinding to close application window
-gsettings set org.gnome.desktop.wm.keybindings close '["<Shift><Super>c"]'
+gsettings set org.gnome.desktop.wm.keybindings close '["<Super>q"]'
 
 # Installing customisations
 if [ "$customisation_choice" = 'yes' ]; then
