@@ -44,10 +44,14 @@ function shellChoice {
 # Source 1: https://askubuntu.com/questions/597395/
 # Source 2: https://gitlab.com/tukusejssirs/lnx_scripts/-/blob/master/bash/functions/gshort.sh
 function setCustomKeybind {
-	gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/$1/']"
-	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/$1/ name "$2"
-	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/$1/ command "$3"
-	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/$1/ binding "$4"
+    local key="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/"
+    local custom_keys=$(gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings)
+    local new_key="$key$1/"
+    custom_keys=${custom_keys::-1}", '$new_key']"
+    gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "$custom_keys"
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$new_key name "$2"
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$new_key command "$3"
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$new_key binding "$4"
 }
 
 # Installation
