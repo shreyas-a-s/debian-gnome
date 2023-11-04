@@ -40,7 +40,7 @@ function shellChoice {
 	fi
 }
 
-# Set custom GNOME keyboard shortcuts
+# Function to set custom GNOME keyboard shortcuts
 # Source 1: https://askubuntu.com/questions/597395/
 # Source 2: https://gitlab.com/tukusejssirs/lnx_scripts/-/blob/master/bash/functions/gshort.sh
 function setCustomKeybind {
@@ -63,13 +63,8 @@ sudo apt-get -y purge firefox-esr yelp gnome-terminal totem gnome-software gnome
 # Symlink gedit to gnome-text-editor
 sudo ln -s /usr/bin/gnome-text-editor /usr/bin/gedit
 
-# Set gnome-console to launch with Ctrl+Alt+T
-# Source 1: https://askubuntu.com/questions/597395/
-# Source 2: https://gitlab.com/tukusejssirs/lnx_scripts/-/blob/master/bash/functions/gshort.sh
-gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Terminal'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'kgx'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Super>Return'
+# Set Custom Keyboard shortcuts
+setCustomKeybind custom0 Terminal kgx '<Super>Return'
 
 # Set default keybinding to close application window
 gsettings set org.gnome.desktop.wm.keybindings close '["<Super>q"]'
