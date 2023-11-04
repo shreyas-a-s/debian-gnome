@@ -65,6 +65,7 @@ sudo ln -s /usr/bin/gnome-text-editor /usr/bin/gedit
 
 # Set Custom Keyboard shortcuts
 setCustomKeybind custom0 Terminal kgx '<Super>Return'
+setCustomKeybind custom1 Brave brave-browser '<Super>b'
 
 # Set default keybinding to close application window
 gsettings set org.gnome.desktop.wm.keybindings close '["<Super>q"]'
