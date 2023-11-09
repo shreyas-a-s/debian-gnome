@@ -95,3 +95,6 @@ if [ "$customisation_choice" = 'yes' ]; then
   echo "Starting the installation.."
   cd ..; git clone -b de https://github.com/shreyas-a-s/debian-customisation.git && cd debian-customisation/ && ./install.sh
 fi
+
+# Install rounded window corners extension
+installGnomeExtension rounded-window-corners@yilozt
