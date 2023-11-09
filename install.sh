@@ -54,6 +54,17 @@ function setCustomKeybind {
     gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$new_key binding "$4"
 }
 
+# Function to install gnome extensions from cli
+function installGnomeExtension {
+
+  for extensionname in "$@"; do
+    busctl --user call org.gnome.Shell.Extensions /org/gnome/Shell/Extensions org.gnome.Shell.Extensions InstallRemoteExtension s "$extensionname"
+    while ! gnome-extensions list | grep "$extensionname" &> /dev/null; do :; done
+    gnome-extensions enable "$extensionname"
+  done
+
+}
+
 # Installation
 customisationChoice
 if [ "$customisation_choice" = 'yes' ]; then
