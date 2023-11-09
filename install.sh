@@ -84,8 +84,11 @@ setCustomKeybind custom1 Brave 'brave-browser' '<Super>b'
 setCustomKeybind custom2 LibreWolf librewolf '<Super>l'
 setCustomKeybind custom3 'Github-Desktop' 'github-desktop' '<Super>g'
 setCustomKeybind custom4 'Virt-Manager' 'virt-manager' '<Super>v'
-setCustomKeybind custom4 'Disk Usage Analyzer' baobab '<Super>d'
-setCustomKeybind custom4 Files nautilus '<Super>f'
+setCustomKeybind custom5 'Disk Usage Analyzer' baobab '<Super>d'
+setCustomKeybind custom6 Files nautilus '<Super>f'
+setCustomKeybind custom7 Joplin 'flatpak run net.cozic.joplin_desktop' '<Super>j'
+setCustomKeybind custom8 Reboot reboot '<Shift><Super>r'
+setCustomKeybind custom9 'Shit Down' poweroff '<Shift><Super>s'
 
 # Set default keybinding to close application window
 gsettings set org.gnome.desktop.wm.keybindings close '["<Super>q"]'
