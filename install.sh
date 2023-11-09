@@ -101,3 +101,6 @@ fi
 
 # Install rounded window corners extension
 installGnomeExtension rounded-window-corners@yilozt
+
+# Enable GSConnect
+gnome-extensions enable gsconnect@andyholmes.github.io
