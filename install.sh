@@ -39,17 +39,6 @@ shellChoice() {
   fi
 }
 
-# Function to install gnome extensions from cli
-installGnomeExtension() {
-
-  for extensionname in "$@"; do
-    busctl --user call org.gnome.Shell.Extensions /org/gnome/Shell/Extensions org.gnome.Shell.Extensions InstallRemoteExtension s "$extensionname"
-    while ! gnome-extensions list | grep "$extensionname" > /dev/null; do :; done
-    gnome-extensions enable "$extensionname"
-  done
-
-}
-
 # Installation
 customisationChoice
 if [ "$customisation_choice" = 'yes' ]; then
@@ -68,9 +57,6 @@ if [ "$customisation_choice" = 'yes' ]; then
   echo "Starting the installation.."
   cd ..; git clone -b de https://github.com/shreyas-a-s/debian-customisation.git && cd debian-customisation/ && ./install.sh
 fi
-
-# Install rounded window corners extension
-installGnomeExtension rounded-window-corners@yilozt
 
 # Enable GSConnect
 gnome-extensions enable gsconnect@andyholmes.github.io
