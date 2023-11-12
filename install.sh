@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # ██████╗ ███████╗██████╗ ██╗ █████╗ ███╗   ██╗       ██████╗ ███╗   ██╗ ██████╗ ███╗   ███╗███████╗
 # ██╔══██╗██╔════╝██╔══██╗██║██╔══██╗████╗  ██║      ██╔════╝ ████╗  ██║██╔═══██╗████╗ ████║██╔════╝
@@ -8,19 +8,19 @@
 # ╚═════╝ ╚══════╝╚═════╝ ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝       ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝
 
 # Customisation choice
-function customisationChoice {
-	read -r -p "Continue to install debian-customisation? (yes/no): " customisation_choice
+customisationChoice() {
+	echo 'Continue to install debian-customisation? (yes/no): ' && read -r customisation_choice
 	if [ "$customisation_choice" != 'yes' ] && [ "$customisation_choice" != 'no' ]; then
-		echo -e "Invalid Choice! Keep in mind this is CASE-SENSITIVE.\n"
-    	customisationChoice
-  	fi
+		printf 'Invalid Choice! Keep in mind this is CASE-SENSITIVE.\n'
+    customisationChoice
+  fi
 }
 
 # QEMU Choice
-function qemuChoice {
-  read -r -p "Continue to install qemu and virt-manager? (yes/no): " qemu_choice
+qemuChoice() {
+  echo 'Continue to install qemu and virt-manager? (yes/no): ' && read -r qemu_choice
   if [ "$qemu_choice" != 'yes' ] && [ "$qemu_choice" != 'no' ]; then
-    echo -e "Invalid Choice! Keep in mind this is CASE-SENSITIVE.\n"
+    printf 'Invalid Choice! Keep in mind this is CASE-SENSITIVE.\n'
     qemuChoice
   fi
 }
@@ -28,37 +28,24 @@ function qemuChoice {
 # Shell Choice
 shellChoice() {
 	echo "Which shell you prefer to customise?"
-	echo "[1] Bash"
-	echo "[2] Fish"
-	echo "[3] Zsh"
-	echo "[4] None"
-	echo "Choose an option (1/2/3/4) : " && read -r shell_choice
-  if ! [ "$shell_choice" -ge 1 ] || ! [ "$shell_choice" -le 4 ]; then
-    printf "Invalid Choice..!!!\n\n"
-    shellChoice
-  fi
-}
-
-# Function to set custom GNOME keyboard shortcuts
-# Source 1: https://askubuntu.com/questions/597395/
-# Source 2: https://gitlab.com/tukusejssirs/lnx_scripts/-/blob/master/bash/functions/gshort.sh
-function setCustomKeybind {
-    local key="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/"
-    local custom_keys=$(gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings)
-    local new_key="$key$1/"
-    custom_keys=${custom_keys::-1}", '$new_key']"
-    gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "$custom_keys"
-    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$new_key name "$2"
-    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$new_key command "$3"
-    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$new_key binding "$4"
+	echo "[1] Bash only"
+	echo "[2] Fish only"
+	echo "[3] Both but set Bash as Interactive Shell"
+	echo "[4] Both but set Fish as Interactive Shell"
+	echo "[5] None"
+	echo 'Choose an option (1/2/3/4/5) : ' && read -r shell_choice
+	if ! [ "$shell_choice" -ge 1 ] || ! [ "$shell_choice" -le 4 ]; then
+		printf 'Invalid Choice..!!!\n'
+		shellChoice
+	fi
 }
 
 # Function to install gnome extensions from cli
-function installGnomeExtension {
+installGnomeExtension() {
 
   for extensionname in "$@"; do
     busctl --user call org.gnome.Shell.Extensions /org/gnome/Shell/Extensions org.gnome.Shell.Extensions InstallRemoteExtension s "$extensionname"
-    while ! gnome-extensions list | grep "$extensionname" &> /dev/null; do :; done
+    while ! gnome-extensions list | grep "$extensionname" > /dev/null; do :; done
     gnome-extensions enable "$extensionname"
   done
 
@@ -76,21 +63,6 @@ sudo apt-get -y purge firefox-esr yelp gnome-terminal totem gnome-software gnome
 
 # Symlink gedit to gnome-text-editor
 sudo ln -s /usr/bin/gnome-text-editor /usr/bin/gedit
-
-# Set Custom Keyboard shortcuts
-setCustomKeybind custom0 Terminal kgx '<Super>Return'
-setCustomKeybind custom1 Brave 'brave-browser' '<Super>b'
-setCustomKeybind custom2 LibreWolf librewolf '<Super>l'
-setCustomKeybind custom3 'Github-Desktop' 'github-desktop' '<Super>g'
-setCustomKeybind custom4 'Virt-Manager' 'virt-manager' '<Super>v'
-setCustomKeybind custom5 'Disk Usage Analyzer' baobab '<Super>d'
-setCustomKeybind custom6 Files nautilus '<Super>f'
-setCustomKeybind custom7 Joplin 'flatpak run net.cozic.joplin_desktop' '<Super>j'
-setCustomKeybind custom8 Reboot reboot '<Shift><Super>r'
-setCustomKeybind custom9 'Shit Down' poweroff '<Shift><Super>s'
-
-# Set default keybinding to close application window
-gsettings set org.gnome.desktop.wm.keybindings close '["<Super>q"]'
 
 # Installing customisations
 if [ "$customisation_choice" = 'yes' ]; then
