@@ -28,16 +28,15 @@ qemuChoice() {
 # Shell Choice
 shellChoice() {
 	echo "Which shell you prefer to customise?"
-	echo "[1] Bash only"
-	echo "[2] Fish only"
-	echo "[3] Both but set Bash as Interactive Shell"
-	echo "[4] Both but set Fish as Interactive Shell"
-	echo "[5] None"
-	echo 'Choose an option (1/2/3/4/5) : ' && read -r shell_choice
-	if ! [ "$shell_choice" -ge 1 ] || ! [ "$shell_choice" -le 4 ]; then
-		printf 'Invalid Choice..!!!\n'
-		shellChoice
-	fi
+	echo "[1] Bash"
+	echo "[2] Fish"
+	echo "[3] Zsh"
+	echo "[4] None"
+	echo "Choose an option (1/2/3/4) : " && read -r shell_choice
+  if ! [ "$shell_choice" -ge 1 ] || ! [ "$shell_choice" -le 4 ]; then
+    printf "Invalid Choice..!!!\n\n"
+    shellChoice
+  fi
 }
 
 # Function to install gnome extensions from cli
